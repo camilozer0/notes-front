@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-option',
+  selector: 'todos-option',
   standalone: true,
   imports: [],
   templateUrl: './option.component.html',

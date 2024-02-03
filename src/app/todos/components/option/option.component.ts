@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'todos-option',
@@ -8,5 +8,8 @@ import { Component } from '@angular/core';
   styleUrl: './option.component.css'
 })
 export class OptionComponent {
+
+  @Input()
+  public optionToShow = '';
 
 }

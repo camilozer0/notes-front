@@ -1,8 +1,3 @@
 <div class="grid bg-softgray h-dvh justify-center content-start pt-6 gap-6 text-xl">
-  <todos-option>Option 1</todos-option>
-  <todos-option>Option 1</todos-option>
-  <todos-option>Option 1</todos-option>
-  <todos-option>Option 1</todos-option>
-  <todos-option>Option 1</todos-option>
-  <todos-option>Option 1</todos-option>
+  <todos-option *ngFor="let option of todosOptions" [optionToShow]="option" class="w-[16rem]"></todos-option>
 </div>

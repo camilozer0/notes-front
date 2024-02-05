@@ -14,7 +14,7 @@ import { ToDo } from '../../interfaces/todo.interface';
   template: `
   <div class="bg-softgray m-6 rounded-sm
   ">
-    <component-todos-table [todos]="todosFiltered"></component-todos-table>
+    <component-todos-table [todos]="todosFiltered" [toDosTitle]="title"></component-todos-table>
   </div>
   `,
   styleUrl: './upcoming.component.css',
@@ -23,6 +23,7 @@ import { ToDo } from '../../interfaces/todo.interface';
 export class UpcomingComponent implements OnInit {
 
   public todosFiltered: ToDo[] = [];
+  public title: string = 'Upcoming...'
 
   constructor(
     private readonly todosService: TodosService,

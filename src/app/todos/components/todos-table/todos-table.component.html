@@ -1,21 +1,23 @@
-<div class="m-10 pt-8">
-  <h3 class="font-bold text-4xl text-darkgray">Upcoming...</h3>
+<div class="my-10 mx-6 pt-8">
+  <h3 class="font-bold text-4xl text-darkgray">{{ toDosTitle }}</h3>
   <p class="text-xl text-mediumgray pt-2">Date</p>
-  <div class="mt-10 gap-2">
-    <div class="bg-softwhite flex flex-row justify-between px-4 py-2 rounded-md">
+  <div class="my-10 space-y-3">
+    <div *ngFor="let todo of todos; let i = index"
+      class="bg-softwhite flex flex-row justify-between px-4 py-2 rounded-md hover:scale-105">
       <div class="left-text">
-        <h4 class="font-bold text-2xl text-darkgray mb-1">Todo title</h4>
-        <p class="text-xl text-mediumgray">Todo description for this template</p>
+        <h4 class="font-bold text-2xl text-darkgray mb-1">{{ todo.title | titlecase }}</h4>
+        <p class="text-xl text-mediumgray inline">{{ todo.description }}</p>
+        <p class="text-xl text-mediumgray inline"> - {{ todo.dueDate }}</p>
       </div>
-      <div class="flex gap-3 place-items-center">
-        <button class="rounded-full border p-2"><img src="../assets/images/todos/options/open.svg" alt=""
-            class="w-7"></button>
-        <button class="rounded-full border p-2"><img src="../assets/images/todos/options/edit.svg" alt=""
-            class="w-7"></button>
-        <button class="rounded-full border p-2"><img src="../assets/images/todos/options/archive.svg" alt=""
-            class="w-7"></button>
-        <button class="rounded-full border p-2"><img src="../assets/images/todos/options/delete.svg" alt=""
-            class="w-7"></button>
+      <div class="flex gap-3 place-items-center text-softwhite">
+        <button class="rounded-full border-2 p-2 hover:text-darkgray transition duration-500 ease-in-out"><img src="../assets/images/todos/options/open.svg"
+            alt="open toDo" class="w-7 hover:scale-110 transition duration-300 ease-in-out"></button>
+        <button class="rounded-full border-2 p-2 hover:text-darkgray transition duration-500 ease-in-out"><img src="../assets/images/todos/options/edit.svg"
+            alt=" edit toDo" class="w-7 hover:scale-110 transition duration-300 ease-in-out"></button>
+        <button class="rounded-full border-2 p-2 hover:text-darkgray transition duration-500 ease-in-out"><img
+            src="../assets/images/todos/options/archive.svg" alt="archive toDo" class="w-7 hover:scale-110 transition duration-300 ease-in-out"></button>
+        <button class="rounded-full border-2 p-2 hover:text-darkgray transition duration-500 ease-in-out"><img
+            src="../assets/images/todos/options/delete.svg" alt="delete toDo" class="w-7 hover:scale-110 transition duration-300 ease-in-out"></button>
       </div>
     </div>
   </div>
@@ -24,7 +26,3 @@
 <div>
   <button>Wow</button>
 </div>
-
-<template *ngFor="let todo of todos; let i = index">
-  <p>{{ todo.title }}</p>
-</template>

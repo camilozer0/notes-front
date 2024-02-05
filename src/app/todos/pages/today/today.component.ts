@@ -15,6 +15,7 @@ import { TodosService } from '../../services/todos.service';
 export class TodayComponent implements OnInit {
 
   public todosFiltered: ToDo[] = [];
+  public title: string = 'Today';
 
   constructor(
     private readonly todosService: TodosService

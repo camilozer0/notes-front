@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'component-todos-table',
@@ -8,5 +8,8 @@ import { Component } from '@angular/core';
   styleUrl: './todos-table.component.css'
 })
 export class TodosTableComponent {
+
+  @Input()
+  public titleOption: string = '';
 
 }

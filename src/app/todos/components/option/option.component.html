@@ -1,7 +1,7 @@
 <button
   class="flex flex-row gap-5 border-2 rounded-xl px-12 py-1 place-items-center w-full bg-darkgray shadow-md hover:scale-105"
-  [routerLink]="[ '/todos', optionToShow ]"
+  [routerLink]="[ '/todos', optionValue ]"
   >
-  <img src="../assets/images/todos/{{ optionToShow }}.svg" alt="" class="w-6">
-  <h2 class="text-softwhite">{{ optionToShow }}</h2>
+  <img src="../assets/images/todos/{{ optionValue }}.svg" alt="" class="w-6">
+  <h2 class="text-softwhite">{{ optionValue }}</h2>
 </button>

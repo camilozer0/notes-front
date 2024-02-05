@@ -9,7 +9,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     CommonModule,
     TodosTableComponent
   ],
-  template: `<component-todos-table></component-todos-table>`,
+  template: `
+  <div class="bg-softgray m-6 rounded-sm
+  ">
+    <component-todos-table></component-todos-table>
+  </div>
+  `,
   styleUrl: './alltime.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

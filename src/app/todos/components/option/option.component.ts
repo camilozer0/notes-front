@@ -11,6 +11,6 @@ import { RouterModule } from '@angular/router';
 export class OptionComponent {
 
   @Input()
-  public optionToShow = '';
+  public optionValue = '';
 
 }

@@ -1,4 +1,4 @@
-<div class="my-10 mx-6 pt-8">
+<div class="mt-10 mx-6 pt-8">
   <h3 class="font-bold text-4xl text-darkgray">{{ toDosTitle }}</h3>
   <p class="text-xl text-mediumgray pt-2">Date</p>
   <div class="my-10 space-y-3">
@@ -10,19 +10,26 @@
         <p class="text-xl text-mediumgray inline"> - {{ todo.dueDate }}</p>
       </div>
       <div class="flex gap-3 place-items-center text-softwhite">
-        <button class="rounded-full border-2 p-2 hover:text-darkgray transition duration-500 ease-in-out"><img src="../assets/images/todos/options/open.svg"
-            alt="open toDo" class="w-7 hover:scale-110 transition duration-300 ease-in-out"></button>
-        <button class="rounded-full border-2 p-2 hover:text-darkgray transition duration-500 ease-in-out"><img src="../assets/images/todos/options/edit.svg"
-            alt=" edit toDo" class="w-7 hover:scale-110 transition duration-300 ease-in-out"></button>
         <button class="rounded-full border-2 p-2 hover:text-darkgray transition duration-500 ease-in-out"><img
-            src="../assets/images/todos/options/archive.svg" alt="archive toDo" class="w-7 hover:scale-110 transition duration-300 ease-in-out"></button>
+            src="../assets/images/todos/options/open.svg" alt="open toDo"
+            class="w-7 hover:scale-110 transition duration-300 ease-in-out"></button>
         <button class="rounded-full border-2 p-2 hover:text-darkgray transition duration-500 ease-in-out"><img
-            src="../assets/images/todos/options/delete.svg" alt="delete toDo" class="w-7 hover:scale-110 transition duration-300 ease-in-out"></button>
+            src="../assets/images/todos/options/edit.svg" alt=" edit toDo"
+            class="w-7 hover:scale-110 transition duration-300 ease-in-out"></button>
+        <button class="rounded-full border-2 p-2 hover:text-darkgray transition duration-500 ease-in-out"><img
+            src="../assets/images/todos/options/archive.svg" alt="archive toDo"
+            class="w-7 hover:scale-110 transition duration-300 ease-in-out"></button>
+        <button class="rounded-full border-2 p-2 hover:text-darkgray transition duration-500 ease-in-out"><img
+            src="../assets/images/todos/options/delete.svg" alt="delete toDo"
+            class="w-7 hover:scale-110 transition duration-300 ease-in-out"></button>
       </div>
     </div>
   </div>
 </div>
 
-<div>
-  <button>Wow</button>
+<div class="flex flex-row bg-softwhite m-6 rounded-md h-16 pl-4 space-x-4 items-center">
+  <button>
+    <img src="../assets/images/todos/options/addtask.svg" alt="add a todo" class="w-8">
+  </button>
+  <p class="font-semibold text-darkgray text-3xl">add task</p>
 </div>

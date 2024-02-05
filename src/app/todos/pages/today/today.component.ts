@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TodosTableComponent } from '../../components/todos-table/todos-table.component';
+import { ToDo } from '../../interfaces/todo.interface';
+import { TodosService } from '../../services/todos.service';
 
 @Component({
   selector: 'todos-today',
@@ -10,6 +12,23 @@ import { TodosTableComponent } from '../../components/todos-table/todos-table.co
   templateUrl: './today.component.html',
   styleUrl: './today.component.css'
 })
-export class TodayComponent {
+export class TodayComponent implements OnInit {
 
+  public todosFiltered: ToDo[] = [];
+
+  constructor(
+    private readonly todosService: TodosService
+  ) {}
+
+  ngOnInit(): void {
+    this.upcomingTodos();
+  }
+
+  upcomingTodos() {
+    this.todosService.searchUpcomingTodos().subscribe( upTodos => {
+      this.todosFiltered = upTodos;
+      console.log(this.todosFiltered)
+      ;
+    })
+  }
 }

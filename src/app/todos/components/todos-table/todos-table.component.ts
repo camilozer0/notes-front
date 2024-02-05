@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ToDo } from '../../interfaces/todo.interface';
 
 @Component({
   selector: 'component-todos-table',
@@ -10,9 +11,13 @@ import { Component, Input } from '@angular/core';
   templateUrl: './todos-table.component.html',
   styleUrl: './todos-table.component.css'
 })
-export class TodosTableComponent {
+export class TodosTableComponent implements OnInit {
 
   @Input()
-  public titleOption: string[] = [];
+  public todos: ToDo[] = [];
+
+  ngOnInit(): void {
+    console.log(this.todos)
+  }
 
 }

@@ -20,9 +20,9 @@ export class TodosService {
 
   }
 
-  searchUpcomingTodos(): Observable<ToDo> {
+  searchUpcomingTodos(): Observable<ToDo[]> {
     const url: string = `${this.apiUrl}/todo?todoToday=false`;
-    return this.http.get<ToDo>(url)
+    return this.http.get<ToDo[]>(url)
   }
 
   searchActiveTodos() {

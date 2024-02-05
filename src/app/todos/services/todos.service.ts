@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ToDo } from '../interfaces/todo.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +20,9 @@ export class TodosService {
 
   }
 
-  searchUpcomingTodos() {
-
+  searchUpcomingTodos(): Observable<ToDo> {
+    const url: string = `${this.apiUrl}/todo?todoToday=false`;
+    return this.http.get<ToDo>(url)
   }
 
   searchActiveTodos() {

@@ -9,7 +9,13 @@ import { TodosTableComponent } from '../../components/todos-table/todos-table.co
     CommonModule,
     TodosTableComponent
   ],
-  template: `<component-todos-table></component-todos-table>`,
+  template: `
+  <div class="bg-softgray m-6 rounded-sm
+  ">
+    <component-todos-table></component-todos-table>
+  </div>
+
+  `,
   styleUrl: './upcoming.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

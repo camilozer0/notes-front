@@ -35,5 +35,4 @@
   <p class="font-semibold text-darkgray text-3xl">add task</p>
 </div>
 
-<todos-modal (closeModal)="toggleModal()"></todos-modal>
-<!-- *ngIf="showModal" -->
+<todos-modal *ngIf="showModal" (closeModal)="toggleModal()"></todos-modal>

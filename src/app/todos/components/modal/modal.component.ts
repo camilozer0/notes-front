@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -15,6 +15,9 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 export class ModalComponent implements OnInit {
 
   public today: Date = new Date();
+
+  @Input()
+  title: string = 'Welcome';
 
   @Output()
   closeModal = new EventEmitter<void>();

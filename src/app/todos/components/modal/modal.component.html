@@ -1,7 +1,35 @@
-<div class="fixed inset-0 z-50 flex justify-center items-center bg-softwhite bg-opacity-50">
-  <div class="flex flex-col w-full max-w-md p-4 bg-softwhite rounder-lg shadow-xl">
-    <h2 class="text-xl font-bold mb-4">Modal title</h2>
-    <div class="mb-4">This is the modal content</div>
-    <button type="button" class="text-darkgray border border-darkgray hover:bg-mediumgray focus:ring-4 focus:ring-softgray font-medium rounded-md text-sm px-5 py-2.5 mb-2">Close</button>
+<div class="fixed inset-0 z-50 flex justify-center items-center bg-softgray bg-opacity-50">
+  <div class="flex flex-col w-full max-w-md p-4 bg-softgray border-darkgray rounded-lg shadow-xl">
+    <div class="header-todo">
+      <h2 class="text-xl font-bold mb-4">Title</h2>
+      <p class="text-end text-mediumgray">Date</p>
+      <hr class="text-darkgray border mb-2">
+    </div>
+    <button>pick a date</button>
+    <div class="mb-4">
+      <form [formGroup]="todoForm" (ngSubmit)="onSubmit()">
+
+        <label for="dueDate">dueDate</label>
+        <input type="date" id="dueDate" formControlName="dueDate">
+
+        <br>
+        <label for="title">Title</label>
+        <br>
+        <input type="text" formControlName="title" id="title">
+
+        <br>
+        <label for="description">Description</label>
+        <br>
+        <input type="text" formControlName="description" id="description">
+        <br>
+        <!-- Radio buttons para escoger el tagks -->
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+    <button type="button"
+      class="text-darkgray border border-darkgray hover:bg-mediumgray focus:ring-4 focus:ring-softgray font-medium rounded-md text-sm px-5 py-2.5 mb-2"
+      (click)="close()">
+    <img src="../assets/images/todos/edit/cancel.svg" alt="cancel edit" class="w-7">
+    </button>
   </div>
 </div>

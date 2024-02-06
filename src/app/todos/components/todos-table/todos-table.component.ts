@@ -1,12 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { ToDo } from '../../interfaces/todo.interface';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'component-todos-table',
   standalone: true,
   imports: [
-    CommonModule
+    CommonModule,
+    ModalComponent
   ],
   templateUrl: './todos-table.component.html',
   styleUrl: './todos-table.component.css'
@@ -31,6 +33,12 @@ export class TodosTableComponent implements OnInit {
     if ( changes['todos']) {
       this.todos = changes['todos'].currentValue;
     }
+  }
+
+  showModal = false;
+
+  toggleModal() {
+    this.showModal = !this.showModal;
   }
 
 }

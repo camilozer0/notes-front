@@ -57,7 +57,7 @@ export class TodosTableComponent implements OnInit {
   }
 
   deleteTodo(todo: ToDo) {
-    console.log(todo.id)
+    console.log({todo})
     const todoId = todo.id;
     this.todoService.removeTodo( todoId );
   }

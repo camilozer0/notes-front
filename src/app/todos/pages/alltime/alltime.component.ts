@@ -12,8 +12,7 @@ import { TodosService } from '../../services/todos.service';
     TodosTableComponent
   ],
   template: `
-  <div class="bg-softgray m-6 rounded-sm
-  ">
+  <div class="bg-softgray m-6 rounded-sm pb-4">
     <component-todos-table [todos]="todosFiltered" [toDosTitle]="title"></component-todos-table>
   </div>
   `,

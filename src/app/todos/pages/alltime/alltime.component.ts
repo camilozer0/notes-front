@@ -34,7 +34,7 @@ export class AlltimeComponent implements OnInit {
   }
 
   upcomingTodos() {
-    this.todosService.searchUpcomingTodos().subscribe( upTodos => {
+    this.todosService.searchActiveTodos().subscribe( upTodos => {
       this.todosFiltered = [...upTodos];
       this.changeDetection.detectChanges();
       console.log(this.todosFiltered)

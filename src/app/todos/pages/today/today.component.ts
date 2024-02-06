@@ -26,7 +26,7 @@ export class TodayComponent implements OnInit {
   }
 
   upcomingTodos() {
-    this.todosService.searchUpcomingTodos().subscribe( upTodos => {
+    this.todosService.searchTodayTodos().subscribe( upTodos => {
       this.todosFiltered = upTodos;
       console.log(this.todosFiltered)
       ;

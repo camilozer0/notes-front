@@ -16,8 +16,9 @@ export class TodosService {
     private readonly http: HttpClient
   ) { }
 
-  searchTodayTodos() {
-
+  searchTodayTodos(): Observable<ToDo[]> {
+    const url: string = `${this.apiUrl}/todo?todoToday=true`;
+    return this.http.get<ToDo[]>(url)
   }
 
   searchUpcomingTodos(): Observable<ToDo[]> {
@@ -25,12 +26,14 @@ export class TodosService {
     return this.http.get<ToDo[]>(url)
   }
 
-  searchActiveTodos() {
-
+  searchActiveTodos(): Observable<ToDo[]> {
+    const url: string = `${this.apiUrl}/todo?todoActive=true`;
+    return this.http.get<ToDo[]>(url)
   }
 
-  searchArchivedTodos() {
-
+  searchArchivedTodos(): Observable<ToDo[]> {
+    const url: string = `${this.apiUrl}/todo?todoActive=false`;
+    return this.http.get<ToDo[]>(url)
   }
 
   addTodo() {

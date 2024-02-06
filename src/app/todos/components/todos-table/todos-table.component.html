@@ -1,7 +1,7 @@
 <div class="mt-10 mx-6 pt-8">
   <h3 class="font-bold text-4xl text-darkgray">{{ toDosTitle }}</h3>
-  <p class="text-xl text-mediumgray pt-2">Date</p>
-  <div *ngIf="todos.length === 0; else todoList" class="bg-softwhite">
+  <p class="text-xl text-mediumgray pt-2">{{ today | date: 'YYYY-MM-dd' }}</p>
+  <div *ngIf="todos.length === 0; else todoList" class="bg-softwhite px-4 py-2 rounded-sm mt-2">
     <p class="text-xl text-mediumgray">There are no ToDos here</p>
   </div>
   <ng-template #todoList>

@@ -11,13 +11,19 @@ import { ToDo } from '../../interfaces/todo.interface';
   templateUrl: './todos-table.component.html',
   styleUrl: './todos-table.component.css'
 })
-export class TodosTableComponent {
+export class TodosTableComponent implements OnInit {
 
   @Input()
   public todos: ToDo[] = [];
 
   @Input()
   public toDosTitle: string = '';
+
+  public today: Date = new Date();
+
+  ngOnInit(): void {
+    this.today = new Date();
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.

@@ -34,7 +34,7 @@ export class ArchivedComponent implements OnInit {
   }
 
   upcomingTodos() {
-    this.todosService.searchUpcomingTodos().subscribe( upTodos => {
+    this.todosService.searchArchivedTodos().subscribe( upTodos => {
       this.todosFiltered = [...upTodos];
       this.changeDetection.detectChanges();
       console.log(this.todosFiltered)

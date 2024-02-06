@@ -17,10 +17,17 @@
           <button class="btn-todos"><img src="../assets/images/todos/options/open.svg" alt="open toDo"
               class="options-todos"></button>
           <button class="btn-todos" (click)="toggleModal(todo)"><img src="../assets/images/todos/options/edit.svg"
-              alt=" edit toDo" class="options-todos"></button>
-          <button class="btn-todos"><img src="../assets/images/todos/options/archive.svg" alt="archive toDo"
-              class="options-todos"></button>
-          <button class="btn-todos"><img src="../assets/images/todos/options/delete.svg" alt="delete toDo"
+              alt=" edit toDo" class="options-todos">
+            </button>
+            <button class="btn-todos">
+              <img *ngIf="todo.isActive; else activate" src="../assets/images/todos/options/archive.svg" alt="archive toDo"
+              class="options-todos">
+              <ng-template #activate>
+                <img src="../assets/images/todos/options/activate.svg"
+                alt=" edit toDo" class="options-todos">
+              </ng-template>
+            </button>
+          <button class="btn-todos" (click)="deleteTodo(todo)"><img src="../assets/images/todos/options/delete.svg" alt="delete toDo"
               class="options-todos"></button>
         </div>
       </div>

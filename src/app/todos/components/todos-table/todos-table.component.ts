@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { ToDo } from '../../interfaces/todo.interface';
 import { ModalComponent } from '../modal/modal.component';
+import { TodosService } from '../../services/todos.service';
 
 @Component({
   selector: 'component-todos-table',
@@ -14,6 +15,12 @@ import { ModalComponent } from '../modal/modal.component';
   styleUrl: './todos-table.component.css'
 })
 export class TodosTableComponent implements OnInit {
+
+  constructor(
+    private readonly todoService: TodosService
+  ) {
+
+  }
 
   @Input()
   public todos: ToDo[] = [];
@@ -44,10 +51,19 @@ export class TodosTableComponent implements OnInit {
     }
   }
 
-
   toggleModal( todo: ToDo ) {
     let selectedTodo = todo;
     this.showModal = !this.showModal;
+  }
+
+  deleteTodo(todo: ToDo) {
+    console.log(todo.id)
+    const todoId = todo.id;
+    this.todoService.removeTodo( todoId );
+  }
+
+  archiveTodo() {
+    
   }
 
 }

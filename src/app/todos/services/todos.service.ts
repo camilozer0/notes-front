@@ -40,8 +40,9 @@ export class TodosService {
 
   }
 
-  removeTodo() {
-
+  removeTodo( id: string ): Observable<ToDo> {
+    const url: string = `${this.apiUrl}todo/${ id }`;
+    return this.http.delete<ToDo>(url);
   }
 
   updateTodo() {

@@ -3,6 +3,7 @@ import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { ToDo } from '../../interfaces/todo.interface';
 import { ModalComponent } from '../modal/modal.component';
 import { TodosService } from '../../services/todos.service';
+import { UpdateTodo } from '../../interfaces/updateTodo.interface';
 
 @Component({
   selector: 'component-todos-table',
@@ -15,12 +16,6 @@ import { TodosService } from '../../services/todos.service';
   styleUrl: './todos-table.component.css'
 })
 export class TodosTableComponent implements OnInit {
-
-  constructor(
-    private readonly todoService: TodosService
-  ) {
-
-  }
 
   @Input()
   public todos: ToDo[] = [];
@@ -38,6 +33,17 @@ export class TodosTableComponent implements OnInit {
     isActive: true,
     tags: []
   };
+  // public updateTodo: UpdateTodo = {
+  //   title: '',
+  //   description: '',
+  //   dueDate: '',
+  //   isActive: true,
+  //   tags: []
+  // }
+
+  constructor(
+    private readonly todoService: TodosService
+  ) { }
 
   ngOnInit(): void {
     this.today = new Date();
@@ -57,13 +63,21 @@ export class TodosTableComponent implements OnInit {
   }
 
   deleteTodo(todo: ToDo) {
-    console.log({todo})
     const todoId = todo.id;
-    this.todoService.removeTodo( todoId );
+    this.todoService.removeTodo( todoId ).subscribe( res =>
+      console.log(res))
   }
 
-  archiveTodo() {
-    
+  archiveTodo(todo: ToDo) {
+    todo.isActive = !todo.isActive;
+    const {  id, ...updateTodo } = todo;
+    this.todoService.updateTodo( id, updateTodo )
+  }
+
+  updateTodo( todo: ToDo ) {
+    console.log('Vamos a actualizaar')
+
+    //this.todoService.updateTodo( todo )
   }
 
 }

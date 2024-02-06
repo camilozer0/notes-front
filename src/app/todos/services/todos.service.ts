@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, of } from 'rxjs';
 import { ToDo } from '../interfaces/todo.interface';
+import { UpdateTodo } from '../interfaces/updateTodo.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -49,13 +50,13 @@ export class TodosService {
   }
 
   removeTodo( id: string ): Observable<ToDo> {
-    const url: string = `${this.apiUrl}todo/${ id }`;
+    const url: string = `${this.apiUrl}/todo/${ id }`;
     return this.http.delete<ToDo>(url);
   }
 
-  updateTodo( todo: ToDo ): Observable<ToDo> {
-    const url: string =`${this.apiUrl}/todo/${ todo.id }`;
-    return this.http.patch<ToDo>( url, todo )
+  updateTodo( todoId: string, updateTodo: UpdateTodo ): Observable<ToDo> {
+    const url: string =`${this.apiUrl}/todo/${ todoId }`;
+    return this.http.patch<ToDo>( url, updateTodo )
   }
 
 }

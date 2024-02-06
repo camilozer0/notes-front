@@ -14,21 +14,20 @@
           <p class="text-xl text-mediumgray inline"> - {{ todo.dueDate }}</p>
         </div>
         <div class="flex gap-3 place-items-center text-softwhite">
-          <button class="btn-todos"><img src="../assets/images/todos/options/open.svg" alt="open toDo"
-              class="options-todos"></button>
+          <!-- <button class="btn-todos"><img src="../assets/images/todos/options/open.svg" alt="open toDo"
+              class="options-todos"></button> -->
           <button class="btn-todos" (click)="toggleModal(todo)"><img src="../assets/images/todos/options/edit.svg"
               alt=" edit toDo" class="options-todos">
-            </button>
-            <button class="btn-todos">
-              <img *ngIf="todo.isActive; else activate" src="../assets/images/todos/options/archive.svg" alt="archive toDo"
-              class="options-todos">
-              <ng-template #activate>
-                <img src="../assets/images/todos/options/activate.svg"
-                alt=" edit toDo" class="options-todos">
-              </ng-template>
-            </button>
-          <button class="btn-todos" (click)="deleteTodo(todo)"><img src="../assets/images/todos/options/delete.svg" alt="delete toDo"
-              class="options-todos"></button>
+          </button>
+          <button class="btn-todos" (click)="archiveTodo( todo )">
+            <img *ngIf="todo.isActive; else activate" src="../assets/images/todos/options/archive.svg"
+              alt="archive toDo" class="options-todos">
+            <ng-template #activate>
+              <img src="../assets/images/todos/options/activate.svg" alt=" activate toDo" class="options-todos">
+            </ng-template>
+          </button>
+          <button class="btn-todos" (click)="deleteTodo(todo)"><img src="../assets/images/todos/options/delete.svg"
+              alt="delete toDo" class="options-todos"></button>
         </div>
       </div>
     </div>

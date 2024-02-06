@@ -16,7 +16,7 @@
         <div class="flex gap-3 place-items-center text-softwhite">
           <button class="btn-todos"><img src="../assets/images/todos/options/open.svg" alt="open toDo"
               class="options-todos"></button>
-          <button class="btn-todos" (click)="toggleModal()"><img src="../assets/images/todos/options/edit.svg"
+          <button class="btn-todos" (click)="toggleModal(todo)"><img src="../assets/images/todos/options/edit.svg"
               alt=" edit toDo" class="options-todos"></button>
           <button class="btn-todos"><img src="../assets/images/todos/options/archive.svg" alt="archive toDo"
               class="options-todos"></button>
@@ -35,4 +35,4 @@
   <p class="font-semibold text-darkgray text-3xl">add task</p>
 </div>
 
-<todos-modal *ngIf="showModal" (closeModal)="toggleModal()"></todos-modal>
+<todos-modal *ngIf="showModal" [todo]="selectedTodo" (closeModal)="toggleModal(selectedTodo)"></todos-modal>

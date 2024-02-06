@@ -22,6 +22,15 @@ export class TodosTableComponent implements OnInit {
   public toDosTitle: string = '';
 
   public today: Date = new Date();
+  showModal = false;
+  public selectedTodo: ToDo = {
+    id: '',
+    title: '',
+    description: '',
+    dueDate: '',
+    isActive: true,
+    tags: []
+  };
 
   ngOnInit(): void {
     this.today = new Date();
@@ -35,9 +44,9 @@ export class TodosTableComponent implements OnInit {
     }
   }
 
-  showModal = false;
 
-  toggleModal() {
+  toggleModal( todo: ToDo ) {
+    let selectedTodo = todo;
     this.showModal = !this.showModal;
   }
 

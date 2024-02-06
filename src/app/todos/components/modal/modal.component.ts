@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ToDo } from '../../interfaces/todo.interface';
 
 @Component({
   selector: 'todos-modal',
@@ -18,6 +19,16 @@ export class ModalComponent implements OnInit {
 
   @Input()
   title: string = 'Welcome';
+
+  @Input()
+  todo: ToDo = {
+    id: '',
+    title: '',
+    description: '',
+    dueDate: '',
+    isActive: true,
+    tags: []
+  };
 
   @Output()
   closeModal = new EventEmitter<void>();

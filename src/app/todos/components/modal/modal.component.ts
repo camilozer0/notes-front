@@ -1,16 +1,20 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'todos-modal',
   standalone: true,
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonModule
   ],
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.css'
 })
-export class ModalComponent {
+export class ModalComponent implements OnInit {
+
+  public today: Date = new Date();
 
   @Output()
   closeModal = new EventEmitter<void>();
@@ -20,6 +24,10 @@ export class ModalComponent {
     title: new FormControl(''),
     description: new FormControl('')
   })
+
+  ngOnInit(): void {
+    this.today = new Date();
+  }
 
 
   onSubmit() {

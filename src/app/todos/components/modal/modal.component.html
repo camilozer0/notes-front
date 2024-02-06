@@ -1,35 +1,36 @@
-<div class="fixed inset-0 z-50 flex justify-center items-center bg-softgray bg-opacity-50">
-  <div class="flex flex-col w-full max-w-md p-4 bg-softgray border-darkgray rounded-lg shadow-xl">
+<div class="fixed inset-0 z-50 flex justify-center items-center bg-darkgray bg-opacity-70">
+  <div class="flex flex-col w-full max-w-md px-8 py-6 bg-softgray border-2 border-darkgray rounded-lg shadow-xl">
     <div class="header-todo">
-      <h2 class="text-xl font-bold mb-4">Title</h2>
-      <p class="text-end text-mediumgray">Date</p>
+      <h2 class="text-3xl font-bold mb-4">Title</h2>
+      <p class="text-end text-mediumgray">{{ today | date: 'YYYY-MM-dd' }}</p>
       <hr class="text-darkgray border mb-2">
     </div>
-    <button>pick a date</button>
-    <div class="mb-4">
-      <form [formGroup]="todoForm" (ngSubmit)="onSubmit()">
+    <div class="mb-4 mt-10">
+      <form [formGroup]="todoForm" (ngSubmit)="onSubmit()" class="flex flex-col">
 
-        <label for="dueDate">dueDate</label>
-        <input type="date" id="dueDate" formControlName="dueDate">
+        <div class="flex flex-row justify-end gap-2 mb-4">
+          <!-- <label for="dueDate">dueDate</label> -->
+          <input type="date" id="dueDate" formControlName="dueDate" min="{{ today | date: 'YYYY-MM-dd' }}"
+            class="h-7 border rounded-md px-1 py-2 text-lg">
+        </div>
 
-        <br>
-        <label for="title">Title</label>
-        <br>
-        <input type="text" formControlName="title" id="title">
+          <label for="title" class="text-2xl text-mediumgray mb-3">Title</label>
+          <input type="text" formControlName="title" id="title" class="py-1 px-2 rounded-lg text-lg">
 
-        <br>
-        <label for="description">Description</label>
-        <br>
-        <input type="text" formControlName="description" id="description">
-        <br>
+          <br>
+          <label for="description" class="text-2xl text-mediumgray mb-3">Description</label>
+            <textarea type="text" formControlName="description" id="description" cols="30" rows="6" class="py-1 px-2 rounded-lg text-lg"></textarea>
+          <br>
         <!-- Radio buttons para escoger el tagks -->
-        <button type="submit">Submit</button>
+        <div class="mt-8 flex flex-row items-end justify-end px-2 gap-x-3">
+          <button type="submit" class="border rounded-full p-1 hover:scale-105 shadow-lg">
+            <img src="../assets/images/todos/edit/save.svg" alt="cancel edit" class="w-8">
+          </button>
+          <button type="button" (click)="close()" class="border rounded-full p-1 hover:scale-105 shadow-lg">
+            <img src="../assets/images/todos/edit/cancel.svg" alt="cancel edit" class="w-8">
+          </button>
+        </div>
       </form>
     </div>
-    <button type="button"
-      class="text-darkgray border border-darkgray hover:bg-mediumgray focus:ring-4 focus:ring-softgray font-medium rounded-md text-sm px-5 py-2.5 mb-2"
-      (click)="close()">
-    <img src="../assets/images/todos/edit/cancel.svg" alt="cancel edit" class="w-7">
-    </button>
   </div>
 </div>

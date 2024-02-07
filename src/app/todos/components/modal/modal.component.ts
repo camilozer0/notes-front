@@ -53,9 +53,9 @@ export class ModalComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.todoForm = this.fb.group({
-      dueDate: [ '', [Validators.required] ],
-      title: [ '', [Validators.required, Validators.minLength(5)] ],
-      description: [ '', [Validators.required, Validators.minLength(5)]  ]
+      dueDate: [ '', [ Validators.required ] ],
+      title: [ '', [ Validators.required, Validators.minLength(5) ] ],
+      description: [ '', [ Validators.required, Validators.minLength(5) ]  ]
     });
   }
 
@@ -80,6 +80,7 @@ export class ModalComponent implements OnInit {
     this.todo.dueDate = dueDate;
     this.todo.title = title,
     this.todo.description = description;
+    console.log(this.todo)
     this.editedTodo.emit(this.todo)
     // this.close();
   }

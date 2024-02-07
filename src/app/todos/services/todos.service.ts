@@ -49,6 +49,7 @@ export class TodosService {
   // Crea una nueva tarea
   addTodo( todo: UpdateTodo ): Observable<ToDo> {
     const url: string = `${this.apiUrl}/todo/`;
+    console.log('addTodo listo')
     return this.http.post<ToDo>( url, todo )
   }
 

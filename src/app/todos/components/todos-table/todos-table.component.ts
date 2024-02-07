@@ -59,7 +59,8 @@ export class TodosTableComponent implements OnInit {
   }
 
   // Para hacer aparecer/desaparecer el modal
-  toggleModal( todo: ToDo ) {
+  // toggleModal( todo: ToDo ) {
+    toggleModal() {
     // this.selectedTodo = todo;
     this.showModal = !this.showModal;
   }
@@ -75,12 +76,19 @@ export class TodosTableComponent implements OnInit {
   // Cuando se presiona el boton de agregar nueva tarea
   clearTodo() {
     this.selectedTodo = {} as ToDo;
-    this.toggleModal(this.selectedTodo);
+    this.toggleModal();
+    // this.toggleModal(this.selectedTodo);
+  }
+
+  editTodo( todo: ToDo ) {
+    this.selectedTodo = todo;
+    this.toggleModal();
   }
 
   // Crear una tarea nueva
   createTodo( todo: ToDo ) {
     const { id, ...createTodo } = todo;
+    console.log('Voy a crear un todo nuevo')
     this.todoService.addTodo( createTodo ).subscribe( newTodo => {
       console.log(newTodo)
     })
@@ -90,8 +98,8 @@ export class TodosTableComponent implements OnInit {
   archiveTodo(todo: ToDo) {
     todo.isActive = !todo.isActive;
     const {  id, ...updateTodo } = todo;
-    this.todoService.updateTodo( id, updateTodo ).subscribe(res =>
-      console.log(res))
+    this.todoService.updateTodo( id, updateTodo ).subscribe(archTodo =>
+      console.log(archTodo))
   }
 
   // Cuando se va a actualizar un todo
@@ -106,7 +114,7 @@ export class TodosTableComponent implements OnInit {
   // Cuando se presiona el boton de borrar una tarea
   deleteTodo(todo: ToDo) {
     const todoId = todo.id;
-    this.todoService.removeTodo( todoId ).subscribe( res =>
-      console.log(res))
+    this.todoService.removeTodo( todoId ).subscribe( delTodo =>
+      console.log(delTodo))
   }
 }

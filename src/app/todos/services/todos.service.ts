@@ -47,7 +47,7 @@ export class TodosService {
 
   addTodo( todo: ToDo ): Observable<ToDo> {
     const url: string = `${this.apiUrl}/todo/`;
-    return this.http.post<ToDo>(url, todo)
+    return this.http.post<ToDo>( url, todo )
   }
 
   updateTodo( todoId: string, updateTodo: UpdateTodo ): Observable<ToDo> {
@@ -55,8 +55,8 @@ export class TodosService {
     return this.http.patch<ToDo>( url, updateTodo, { headers: this.headers } );
   }
 
-  removeTodo( id: string ): Observable<ToDo> {
-    const url: string = `${this.apiUrl}/todo/${ id }`;
+  removeTodo( todoId: string ): Observable<ToDo> {
+    const url: string = `${this.apiUrl}/todo/${ todoId }`;
     return this.http.delete<ToDo>(url);
   }
 }

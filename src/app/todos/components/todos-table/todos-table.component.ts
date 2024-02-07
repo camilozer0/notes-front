@@ -66,7 +66,8 @@ export class TodosTableComponent implements OnInit {
   archiveTodo(todo: ToDo) {
     todo.isActive = !todo.isActive;
     const {  id, ...updateTodo } = todo;
-    this.todoService.updateTodo( id, updateTodo );
+    this.todoService.updateTodo( id, updateTodo ).subscribe(res =>
+      console.log(res))
   }
 
   updateTodo( todo: ToDo ) {

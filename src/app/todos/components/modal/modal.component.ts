@@ -19,9 +19,19 @@ export class ModalComponent implements OnInit {
 
 // TODO: Habilitar las tags para el todo
   todoForm: FormGroup;
+  // istodoToUpdate: ToDo = {
+  //   id: '',
+  //   title: '',
+  //   description: '',
+  //   dueDate: '',
+  //   isActive: true,
+  //   tags: []
+  // };
 
-  @Input()
-  title: string = 'Welcome';
+  // @Input()
+  // title: string = 'Welcome';
+
+  public title: string = '';
 
   @Input()
   todo: ToDo = {
@@ -35,6 +45,9 @@ export class ModalComponent implements OnInit {
 
   @Output()
   closeModal = new EventEmitter<void>();
+
+  @Output()
+  editedTodo = new EventEmitter<ToDo>();
 
   constructor(
     private fb: FormBuilder
@@ -55,14 +68,20 @@ export class ModalComponent implements OnInit {
         title: title,
         description: description
       })
-      console.log('hay un todo para editar')
+      console.log('hay un todo para editar');
+      this.title = 'Create a note';
+    } else {
+      this.title = 'Update a note'
     }
   }
 
-
   onSubmit() {
-    console.log(this.todoForm.value);
-    this.close();
+    const { dueDate, title, description } = this.todoForm.value;
+    this.todo.dueDate = dueDate;
+    this.todo.title = title,
+    this.todo.description = description;
+    this.editedTodo.emit(this.todo)
+    // this.close();
   }
 
   close() {

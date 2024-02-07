@@ -49,6 +49,7 @@ export class TodosTableComponent implements OnInit {
     this.today = new Date();
   }
 
+  // Mira los cambios que tiene el arreglo de todos para pintarlos en la pantalla
   ngOnChanges(changes: SimpleChanges): void {
     //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
     //Add '${implements OnChanges}' to the class.
@@ -57,16 +58,35 @@ export class TodosTableComponent implements OnInit {
     }
   }
 
+  // Para hacer aparecer/desaparecer el modal
   toggleModal( todo: ToDo ) {
-    this.selectedTodo = todo;
+    // this.selectedTodo = todo;
     this.showModal = !this.showModal;
   }
 
+  // Cuando se envia el formulario
+  onEditedTodo( todo: ToDo ){
+    this.selectedTodo = todo;
+    console.log(todo);
+    ( this.selectedTodo.id === '') ? this.createTodo(this.selectedTodo) : this.updateTodo( this.selectedTodo) ;
+    this.showModal = !this.showModal;
+  }
+
+  // Cuando se presiona el boton de agregar nueva tarea
   clearTodo() {
     this.selectedTodo = {} as ToDo;
     this.toggleModal(this.selectedTodo);
   }
 
+  // Crear una tarea nueva
+  createTodo( todo: ToDo ) {
+    const { id, ...createTodo } = todo;
+    this.todoService.addTodo( createTodo ).subscribe( newTodo => {
+      console.log(newTodo)
+    })
+  }
+
+  // Cuando se presiona el boton de archivar una tarea
   archiveTodo(todo: ToDo) {
     todo.isActive = !todo.isActive;
     const {  id, ...updateTodo } = todo;
@@ -74,12 +94,16 @@ export class TodosTableComponent implements OnInit {
       console.log(res))
   }
 
+  // Cuando se va a actualizar un todo
   updateTodo( todo: ToDo ) {
     console.log('Vamos a actualizaar')
-
-    //this.todoService.updateTodo( todo )
+    const { id, ...updateTodo } = todo;
+    this.todoService.updateTodo( id, updateTodo ).subscribe( updTodo => {
+      console.log(updTodo)
+    })
   }
 
+  // Cuando se presiona el boton de borrar una tarea
   deleteTodo(todo: ToDo) {
     const todoId = todo.id;
     this.todoService.removeTodo( todoId ).subscribe( res =>

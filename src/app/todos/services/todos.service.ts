@@ -25,6 +25,7 @@ export class TodosService {
     )
   }
 
+  // Estos metodos son para traer todos filtrados
   searchTodayTodos(): Observable<ToDo[]> {
     const url: string = `${this.apiUrl}/todo?todoToday=true`;
     return this.getTodosFiltered( url );
@@ -45,7 +46,8 @@ export class TodosService {
     return this.getTodosFiltered( url );
   }
 
-  addTodo( todo: ToDo ): Observable<ToDo> {
+  // Crea una nueva tarea
+  addTodo( todo: UpdateTodo ): Observable<ToDo> {
     const url: string = `${this.apiUrl}/todo/`;
     return this.http.post<ToDo>( url, todo )
   }

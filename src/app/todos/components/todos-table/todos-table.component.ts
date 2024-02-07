@@ -58,10 +58,14 @@ export class TodosTableComponent implements OnInit {
   }
 
   toggleModal( todo: ToDo ) {
-    let selectedTodo = todo;
+    this.selectedTodo = todo;
     this.showModal = !this.showModal;
   }
 
+  clearTodo() {
+    this.selectedTodo = {} as ToDo;
+    this.toggleModal(this.selectedTodo);
+  }
 
   archiveTodo(todo: ToDo) {
     todo.isActive = !todo.isActive;

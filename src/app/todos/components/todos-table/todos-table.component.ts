@@ -62,16 +62,11 @@ export class TodosTableComponent implements OnInit {
     this.showModal = !this.showModal;
   }
 
-  deleteTodo(todo: ToDo) {
-    const todoId = todo.id;
-    this.todoService.removeTodo( todoId ).subscribe( res =>
-      console.log(res))
-  }
 
   archiveTodo(todo: ToDo) {
     todo.isActive = !todo.isActive;
     const {  id, ...updateTodo } = todo;
-    this.todoService.updateTodo( id, updateTodo )
+    this.todoService.updateTodo( id, updateTodo );
   }
 
   updateTodo( todo: ToDo ) {
@@ -80,4 +75,9 @@ export class TodosTableComponent implements OnInit {
     //this.todoService.updateTodo( todo )
   }
 
+  deleteTodo(todo: ToDo) {
+    const todoId = todo.id;
+    this.todoService.removeTodo( todoId ).subscribe( res =>
+      console.log(res))
+  }
 }

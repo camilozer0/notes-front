@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, of } from 'rxjs';
 import { ToDo } from '../interfaces/todo.interface';
@@ -11,7 +11,8 @@ export class TodosService {
 
 
   // TODO: Revisar la direccion
-  private apiUrl: string = 'http://localhost:3000/api'
+  private apiUrl: string = 'http://localhost:3000/api';
+  private headers: HttpHeaders = new HttpHeaders({ 'content-type': 'application/json' })
 
   constructor(
     private readonly http: HttpClient
@@ -49,14 +50,13 @@ export class TodosService {
     return this.http.post<ToDo>(url, todo)
   }
 
+  updateTodo( todoId: string, updateTodo: UpdateTodo ): Observable<ToDo> {
+    const url: string =`${this.apiUrl}/todo/${ todoId }`;
+    return this.http.patch<ToDo>( url, updateTodo, { headers: this.headers } );
+  }
+
   removeTodo( id: string ): Observable<ToDo> {
     const url: string = `${this.apiUrl}/todo/${ id }`;
     return this.http.delete<ToDo>(url);
   }
-
-  updateTodo( todoId: string, updateTodo: UpdateTodo ): Observable<ToDo> {
-    const url: string =`${this.apiUrl}/todo/${ todoId }`;
-    return this.http.patch<ToDo>( url, updateTodo )
-  }
-
 }

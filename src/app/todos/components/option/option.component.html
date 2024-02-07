@@ -3,5 +3,5 @@
   [routerLink]="[ '/todos', optionValue ]"
   >
   <img src="../assets/images/todos/{{ optionValue }}.svg" alt="" class="w-6">
-  <h2 class="text-softwhite">{{ optionValue }}</h2>
+  <h2 class="text-softwhite">{{ optionValue | titlecase }}</h2>
 </button>

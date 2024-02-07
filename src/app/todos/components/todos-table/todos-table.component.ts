@@ -3,7 +3,6 @@ import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { ToDo } from '../../interfaces/todo.interface';
 import { ModalComponent } from '../modal/modal.component';
 import { TodosService } from '../../services/todos.service';
-import { UpdateTodo } from '../../interfaces/updateTodo.interface';
 
 @Component({
   selector: 'component-todos-table',
@@ -33,13 +32,6 @@ export class TodosTableComponent implements OnInit {
     isActive: true,
     tags: []
   };
-  // public updateTodo: UpdateTodo = {
-  //   title: '',
-  //   description: '',
-  //   dueDate: '',
-  //   isActive: true,
-  //   tags: []
-  // }
 
   constructor(
     private readonly todoService: TodosService
@@ -68,8 +60,7 @@ export class TodosTableComponent implements OnInit {
   // Cuando se envia el formulario
   onEditedTodo( todo: ToDo ){
     this.selectedTodo = todo;
-    console.log(todo);
-    ( this.selectedTodo.id === '') ? this.createTodo(this.selectedTodo) : this.updateTodo( this.selectedTodo) ;
+    ( this.selectedTodo.id ) ? this.updateTodo(this.selectedTodo) : this.createTodo( this.selectedTodo) ;
     this.showModal = !this.showModal;
   }
 
@@ -77,7 +68,6 @@ export class TodosTableComponent implements OnInit {
   clearTodo() {
     this.selectedTodo = {} as ToDo;
     this.toggleModal();
-    // this.toggleModal(this.selectedTodo);
   }
 
   editTodo( todo: ToDo ) {
@@ -86,11 +76,11 @@ export class TodosTableComponent implements OnInit {
   }
 
   // Crear una tarea nueva
-  createTodo( todo: ToDo ) {
-    const { id, ...createTodo } = todo;
-    console.log('Voy a crear un todo nuevo')
+  createTodo( createTodo: ToDo ) {
+    console.log('Voy a crear un todo nuevo', createTodo)
     this.todoService.addTodo( createTodo ).subscribe( newTodo => {
-      console.log(newTodo)
+      console.log(newTodo);
+      window.location.reload();
     })
   }
 
@@ -99,7 +89,8 @@ export class TodosTableComponent implements OnInit {
     todo.isActive = !todo.isActive;
     const {  id, ...updateTodo } = todo;
     this.todoService.updateTodo( id, updateTodo ).subscribe(archTodo =>
-      console.log(archTodo))
+      console.log(archTodo));
+      window.location.reload();
   }
 
   // Cuando se va a actualizar un todo
@@ -107,7 +98,8 @@ export class TodosTableComponent implements OnInit {
     console.log('Vamos a actualizaar')
     const { id, ...updateTodo } = todo;
     this.todoService.updateTodo( id, updateTodo ).subscribe( updTodo => {
-      console.log(updTodo)
+      console.log(updTodo);
+      window.location.reload();
     })
   }
 
@@ -115,6 +107,7 @@ export class TodosTableComponent implements OnInit {
   deleteTodo(todo: ToDo) {
     const todoId = todo.id;
     this.todoService.removeTodo( todoId ).subscribe( delTodo =>
-      console.log(delTodo))
+      console.log(delTodo));
+      window.location.reload();
   }
 }

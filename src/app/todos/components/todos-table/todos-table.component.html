@@ -1,8 +1,8 @@
 <div class="mt-10 mx-6 pt-8">
   <h3 class="font-bold text-4xl text-darkgray">{{ toDosTitle }}</h3>
   <p class="text-xl text-mediumgray pt-2">{{ today | date: 'MMM d, y' }}</p>
-  <div *ngIf="todos.length === 0; else todoList" class="bg-softwhite px-4 py-2 rounded-sm mt-2">
-    <p class="text-xl text-mediumgray">There are no ToDos here</p>
+  <div *ngIf="todos.length === 0; else todoList" class="bg-softwhite px-4 py-2 rounded-md mt-2">
+    <p class="text-xl text-mediumgray text-right">No hay tareas aca!</p>
   </div>
   <ng-template #todoList>
     <div class="my-10 space-y-3">
@@ -16,8 +16,8 @@
         <div class="flex gap-3 place-items-center text-softwhite">
           <!-- <button class="btn-todos"><img src="../assets/images/todos/options/open.svg" alt="open toDo"
               class="options-todos"></button> -->
-          <button *ngIf="todo.isActive" class="btn-todos" (click)="editTodo(todo)"><img src="../assets/images/todos/options/edit.svg"
-              alt=" edit toDo" class="options-todos">
+          <button *ngIf="todo.isActive" class="btn-todos" (click)="editTodo(todo)"><img
+              src="../assets/images/todos/options/edit.svg" alt=" edit toDo" class="options-todos">
           </button>
           <button class="btn-todos" (click)="archiveTodo( todo )">
             <img *ngIf="todo.isActive; else activate" src="../assets/images/todos/options/archive.svg"
@@ -39,8 +39,8 @@
     <img src="../assets/images/todos/options/addtask.svg" alt="add a todo" class="w-8">
     <p class="font-semibold text-darkgray text-3xl">add task</p>
   </button>
-
 </div>
 
-<todos-modal *ngIf="showModal" [todo]="selectedTodo" (closeModal)="toggleModal()" (editedTodo)="onEditedTodo($event)"></todos-modal>
+<todos-modal *ngIf="showModal" [todo]="selectedTodo" (closeModal)="toggleModal()"
+  (editedTodo)="onEditedTodo($event)"></todos-modal>
 <!-- <todos-modal *ngIf="showModal" [todo]="selectedTodo" (closeModal)="toggleModal(selectedTodo)" (editedTodo)="onEditedTodo($event)"></todos-modal> -->

@@ -13,6 +13,6 @@ import { CommonModule } from '@angular/common';
 export class SidebarComponent {
 
   public todosOptions = [
-    'today', 'upcoming', 'alltime', 'archived', 'myprofile', 'addtask'
+    'today', 'upcoming', 'alltime', 'archived', 'myprofile'
   ]
 }

@@ -5,6 +5,9 @@ import { TodayComponent } from './todos/pages/today/today.component';
 import { UpcomingComponent } from './todos/pages/upcoming/upcoming.component';
 import { AlltimeComponent } from './todos/pages/alltime/alltime.component';
 import { ArchivedComponent } from './todos/pages/archived/archived.component';
+import { UserComponent } from './user/pages/user/user.component';
+import { SignupComponent } from './user/component/signup/signup.component';
+import { LoginComponent } from './user/component/login/login.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -14,6 +17,9 @@ export const routes: Routes = [
     { path: 'upcoming', component: UpcomingComponent },
     { path: 'alltime', component: AlltimeComponent },
     { path: 'archived', component: ArchivedComponent },
-  ]
-}
+  ]},
+  { path: 'user', component: UserComponent, children: [
+    { path: 'signup', component: SignupComponent },
+    { path: 'login', component: LoginComponent }
+  ]}
 ]

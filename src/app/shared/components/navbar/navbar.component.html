@@ -5,10 +5,10 @@
     <h1 class="text-4xl title">Let's <span class="text-base font-normal">to</span>Do It</h1>
   </div>
   <div class="signop flex flex-row gap-6 text-xl">
-    <button
+    <button [routerLink]="['/user', 'signup']"
       class="border bg-softgray hover:bg-darkgray hover:text-softwhite hover:scale-110 text-darkgray rounded-3xl px-5 font-semibold shadow-md shadow-darkgray py-1">Sign
       In</button>
-    <button
+    <button [routerLink]="['/user', 'login']"
       class="border bg-softgray hover:bg-darkgray hover:text-softwhite hover:scale-110 text-darkgray rounded-3xl px-5 font-semibold shadow-md shadow-darkgray py-1">Sign
       Up</button>
   </div>

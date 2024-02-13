@@ -15,4 +15,8 @@
   .options-todos {
     @apply w-7 hover:scale-110 transition duration-300 ease-in-out
   }
+
+  .fields-user {
+    @apply h-8 rounded-md px-1 py-2 text-lg mb-4
+  }
 }

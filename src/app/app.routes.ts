@@ -8,6 +8,7 @@ import { ArchivedComponent } from './todos/pages/archived/archived.component';
 import { UserComponent } from './user/pages/user/user.component';
 import { SignupComponent } from './user/components/signup/signup.component';
 import { LoginComponent } from './user/components/login/login.component';
+import { UserInfoComponent } from './user/components/user-info/user-info.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -17,6 +18,7 @@ export const routes: Routes = [
     { path: 'upcoming', component: UpcomingComponent },
     { path: 'alltime', component: AlltimeComponent },
     { path: 'archived', component: ArchivedComponent },
+    { path: 'myprofile', component: UserInfoComponent }
   ]},
   { path: 'user', component: UserComponent, children: [
     { path: 'signup', component: SignupComponent },

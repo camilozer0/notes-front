@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { UserSignup } from '../../interfaces';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-signup',
@@ -25,7 +26,8 @@ export class SignupComponent implements OnInit {
   }
 
   constructor(
-    private readonly fb: FormBuilder
+    private readonly fb: FormBuilder,
+    private readonly userService: UserService,
   ) {
     this.userSignupForm = this.fb.group({
       fullName: [ '', [ Validators.required, Validators.minLength(4) ] ],
@@ -45,7 +47,9 @@ export class SignupComponent implements OnInit {
     this.userSignup.fullName = fullName;
     this.userSignup.email = email;
     this.userSignup.password = password;
-    console.log(this.userSignup)
+    this.userService.createNewUser( this.userSignup ).subscribe( newUser => {
+      console.log(newUser);
+    })
   }
 
 

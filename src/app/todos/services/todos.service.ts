@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, of } from 'rxjs';
 import { ToDo } from '../interfaces/todo.interface';
 import { UpdateTodo } from '../interfaces/updateTodo.interface';
+import { UserToken } from '../../user/interfaces/user-token';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +13,19 @@ export class TodosService {
 
   // TODO: Revisar la direccion
   private apiUrl: string = 'http://localhost:3000/api';
-  //private headers: HttpHeaders = new HttpHeaders({ 'content-type': 'application/json' })
+  //private headers: HttpHeaders = new HttpHeaders({ 'content-type': 'application/json' });
+
+  tokenUser = 'this is the token';
+
+
+  // Creo el token para enviarlo y ser authenticado
+  headers = new HttpHeaders({
+    'Authorization': `Bearer' ${ this.tokenUser }`
+  })
+
 
   constructor(
-    private readonly http: HttpClient
+    private readonly http: HttpClient,
   ) { }
 
   getTodosFiltered( url: string ): Observable<ToDo[]> {
@@ -50,7 +60,7 @@ export class TodosService {
   addTodo( todo: UpdateTodo ): Observable<ToDo> {
     const url: string = `${this.apiUrl}/todo/`;
     console.log('addTodo listo')
-    return this.http.post<ToDo>( url, todo )
+    return this.http.post<ToDo>( url, todo, { headers: this.headers } )
   }
 
   updateTodo( todoId: string, updateTodo: UpdateTodo ): Observable<ToDo> {
@@ -60,6 +70,6 @@ export class TodosService {
 
   removeTodo( todoId: string ): Observable<ToDo> {
     const url: string = `${this.apiUrl}/todo/${ todoId }`;
-    return this.http.delete<ToDo>(url);
+    return this.http.delete<ToDo>(url, { headers: this.headers } );
   }
 }

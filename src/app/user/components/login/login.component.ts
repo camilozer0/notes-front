@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { UserService } from '../../services/user.service';
-import { UserLogin } from '../../interfaces';
+import { UserLogin, UserToken } from '../../interfaces';
 
 @Component({
   selector: 'app-login',
@@ -24,9 +24,14 @@ export class LoginComponent {
     password: ''
   }
 
+  public userToken: UserToken = {
+    token: ''
+  }
+
   constructor(
     private readonly fb: FormBuilder,
-    private readonly userService: UserService
+    private readonly userService: UserService,
+    private readonly router: Router,
   ) {
     this.userLoginForm = this.fb.group({
       email: [ '', [Validators.required, Validators.email] ],
@@ -39,7 +44,12 @@ export class LoginComponent {
     this.userLogin.email = email;
     this.userLogin.password = password;
     this.userService.loginUser( this.userLogin ).subscribe( login => {
-      console.log(login)
+      if ( login && login.token ) {
+        this.userToken.token = login.token;
+        this.router.navigate(['/todos/alltime'])
+      } else {
+        console.error('Incorrect email or password')
+      }
     })
 
   }

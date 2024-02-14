@@ -16,7 +16,13 @@
     @apply w-7 hover:scale-110 transition duration-300 ease-in-out
   }
 
+  .btn-sign {
+    @apply border bg-softgray hover:bg-darkgray hover:text-softwhite hover:scale-110 text-darkgray rounded-3xl px-5 font-semibold shadow-md shadow-darkgray py-1
+  }
+
   .fields-user {
     @apply h-8 rounded-md px-1 py-2 text-lg mb-4
   }
+
+
 }

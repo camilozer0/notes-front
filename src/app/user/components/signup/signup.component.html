@@ -1,14 +1,13 @@
 <div class="bg-softgray h-[38rem] w-[20rem] rounded-3xl">
   <div class="mb-12">
     <img class="rounded-t-3xl bg-blend-lighten" src="../assets/images/user/autumleaves.jpg" alt="leaves">
-    <div class="absolute top-0 left-0 w-full h-full bg-mediumgray opacity-40"></div>
-    <p class="text-xs">
+    <p class="text-xs text-right pr-2">
       Photo by <a href="/photographer/winjohn-50474">winjohn</a> on <a href="/">Freeimages.com</a>
     </p>
   </div>
   <div class="flex flex-row justify-center">
     <form [formGroup]="userSignupForm" (ngSubmit)="onSubmit()">
-      <input type="text" class="fields-user"  id="fullName" formControlName="fullName" placeholder="full Name">
+      <input type="text" class="fields-user" id="fullName" formControlName="fullName" placeholder="full Name">
       <br>
       <input type="text" class="fields-user" id="email" formControlName="email" placeholder="email">
       <br>
@@ -24,5 +23,5 @@
       </button>
     </form>
   </div>
-  <p class="mt-2 self-center text-sm text-center">Do you already have an account? <a href="#">Login</a></p>
+  <p class="mt-2 self-center text-sm text-center">Already have an account? <a [routerLink]="'/login'">Login</a></p>
 </div>

@@ -1,1 +1,26 @@
-<p>login works!</p>
+<div class="bg-softgray h-[38rem] w-[20rem] rounded-3xl">
+  <div class="mb-12">
+    <img class="rounded-t-3xl bg-blend-lighten" src="../assets/images/user/autumleaves.jpg" alt="leaves">
+    <p class="text-xs text-right pr-2">
+      Photo by <a href="/photographer/winjohn-50474">winjohn</a> on <a href="/">Freeimages.com</a>
+    </p>
+  </div>
+  <div class="flex flex-row justify-center">
+    <form [formGroup]="userLoginForm" (ngSubmit)="onSubmit()">
+      <input type="text" class="fields-user" id="email" formControlName="email" placeholder="email">
+      <br>
+      <input type="text" class="fields-user" id="password" formControlName="password" placeholder="password">
+      <p>Forgot password?<a href="#">go here</a></p>
+      <br>
+      <button type="submit" class="h-7 bg-darkgray text-softwhite text-md px-2 w-full rounded-lg mt-4"
+        [disabled]="userLoginForm.invalid">
+        LogIn
+      </button>
+      <br>
+      <button class="h-7 bg-mediumgray text-softwhite text-md px-2 w-full rounded-lg mt-4">
+        Maybe later
+      </button>
+    </form>
+  </div>
+  <p class="mt-2 self-center text-sm text-center">Don't have an account <a href="#">SignUp</a></p>
+</div>

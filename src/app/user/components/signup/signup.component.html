@@ -1,4 +1,4 @@
-<div class="bg-softgray h-[38rem] w-[20rem] rounded-3xl">
+<div class="bg-softgray h-[42rem] w-[22rem] rounded-3xl">
   <div class="mb-12">
     <img class="rounded-t-3xl bg-blend-lighten" src="../assets/images/user/autumleaves.jpg" alt="leaves">
     <p class="text-xs text-right pr-2">
@@ -13,15 +13,15 @@
       <br>
       <input type="text" class="fields-user" id="password" formControlName="password" placeholder="password">
       <br>
-      <button type="submit" class="h-7 bg-darkgray text-softwhite text-md px-2 w-full rounded-lg mt-4"
+      <button type="submit" class="h-7 bg-darkgray text-softwhite text-md px-2 w-full rounded-lg mt-4 hover:scale-105"
         [disabled]="userSignupForm.invalid">
         Sign Up
       </button>
       <br>
-      <button class="h-7 bg-mediumgray text-softwhite text-md px-2 w-full rounded-lg mt-4">
+      <button class="h-7 bg-mediumgray text-softwhite text-md px-2 w-full rounded-lg mt-4 hover:scale-105">
         Maybe later
       </button>
     </form>
   </div>
-  <p class="mt-2 self-center text-sm text-center">Already have an account? <a [routerLink]="'/login'">Login</a></p>
+  <p class="mt-2 self-center text-sm text-center">Already have an account? <a [routerLink]="[ '/user', 'login' ]">Login</a></p>
 </div>

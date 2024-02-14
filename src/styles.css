@@ -21,7 +21,7 @@
   }
 
   .fields-user {
-    @apply h-8 rounded-md px-1 py-2 text-lg mb-4
+    @apply h-8 rounded-md px-1 py-2 text-sm mb-4 w-[16rem]
   }
 
 

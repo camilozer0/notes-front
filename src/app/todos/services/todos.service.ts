@@ -12,7 +12,7 @@ export class TodosService {
 
   // TODO: Revisar la direccion
   private apiUrl: string = 'http://localhost:3000/api';
-  private headers: HttpHeaders = new HttpHeaders({ 'content-type': 'application/json' })
+  //private headers: HttpHeaders = new HttpHeaders({ 'content-type': 'application/json' })
 
   constructor(
     private readonly http: HttpClient
@@ -55,7 +55,7 @@ export class TodosService {
 
   updateTodo( todoId: string, updateTodo: UpdateTodo ): Observable<ToDo> {
     const url: string =`${this.apiUrl}/todo/${ todoId }`;
-    return this.http.patch<ToDo>( url, updateTodo, { headers: this.headers } );
+    return this.http.patch<ToDo>( url, updateTodo );
   }
 
   removeTodo( todoId: string ): Observable<ToDo> {

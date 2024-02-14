@@ -1,9 +1,8 @@
 
 
-export interface User {
-
+export interface UserLogged {
   id: string;
-  fullName: string;
   email: string;
+  password: string;
   token: string
 }

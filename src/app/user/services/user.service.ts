@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User, UserLogin, UserSignup } from '../interfaces';
+import { User, UserLogged, UserLogin, UserSignup } from '../interfaces';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -22,9 +22,9 @@ export class UserService {
 
   // Con este metodo hacemos login
   // TODO verifiar lo que se recibe cuando se hace login
-  loginUser( userLogin: UserLogin ): Observable<any> {
+  loginUser( userLogin: UserLogin ): Observable<UserLogged> {
     const url = `${ this.apiUrl }/auth/login`;
-    return this.http.post<any>( url, userLogin)
+    return this.http.post<UserLogged>( url, userLogin)
   }
 
 }

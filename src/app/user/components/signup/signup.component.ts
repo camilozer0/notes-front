@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserSignup } from '../../interfaces';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -28,6 +28,7 @@ export class SignupComponent implements OnInit {
   constructor(
     private readonly fb: FormBuilder,
     private readonly userService: UserService,
+    private readonly router: Router
   ) {
     this.userSignupForm = this.fb.group({
       fullName: [ '', [ Validators.required, Validators.minLength(4) ] ],
@@ -47,8 +48,13 @@ export class SignupComponent implements OnInit {
     this.userSignup.fullName = fullName;
     this.userSignup.email = email;
     this.userSignup.password = password;
+    console.log(this.userSignup)
     this.userService.createNewUser( this.userSignup ).subscribe( newUser => {
-      console.log(newUser);
+      if ( newUser && newUser.token ) {
+        this.router.navigate(['todos/alltime']);
+      } else {
+        console.error('Invalid user data')
+      }
     })
   }
 

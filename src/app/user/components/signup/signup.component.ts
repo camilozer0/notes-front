@@ -30,7 +30,7 @@ export class SignupComponent implements OnInit {
     this.userSignupForm = this.fb.group({
       fullName: [ '', [ Validators.required, Validators.minLength(4) ] ],
       email: [ '', [ Validators.required, Validators.email ] ],
-      password: [ '', [ Validators.required, Validators.minLength(8), Validators.pattern('/(?:(?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/') ] ]
+      password: [ '', [ Validators.required, Validators.minLength(8), Validators.pattern(/(?:(?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/) ] ]
     });
   }
 
@@ -47,5 +47,6 @@ export class SignupComponent implements OnInit {
     this.userSignup.password = password;
     console.log(this.userSignup)
   }
+
 
 }

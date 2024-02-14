@@ -10,14 +10,14 @@
       <input type="text" class="fields-user" id="email" formControlName="email" placeholder="email">
       <br>
       <input type="text" class="fields-user" id="password" formControlName="password" placeholder="password">
-      <p>Forgot password?<a href="#">go here</a></p>
+      <p class="text-sm"><a href="#">Forgot password?</a></p>
       <br>
       <button type="submit" class="h-7 bg-darkgray text-softwhite text-md px-2 w-full rounded-lg mt-4 hover:scale-105"
         [disabled]="userLoginForm.invalid">
         Log In
       </button>
       <br>
-      <button class="h-7 bg-mediumgray text-softwhite text-md px-2 w-full rounded-lg mt-4 hover:scale-105">
+      <button class="h-7 bg-mediumgray text-softwhite text-md px-2 w-full rounded-lg mt-4 hover:scale-105" [routerLink]="'/home'">
         Maybe later
       </button>
     </form>

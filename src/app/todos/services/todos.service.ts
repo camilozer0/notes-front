@@ -1,9 +1,9 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import cryptoJs from 'crypto-js';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, of } from 'rxjs';
+import { Observable, catchError, of, tap } from 'rxjs';
 import { ToDo } from '../interfaces/todo.interface';
 import { UpdateTodo } from '../interfaces/updateTodo.interface';
-import { UserToken } from '../../user/interfaces/user-token';
 
 @Injectable({
   providedIn: 'root'
@@ -14,19 +14,33 @@ export class TodosService {
   // TODO: Revisar la direccion
   private apiUrl: string = 'http://localhost:3000/api';
   //private headers: HttpHeaders = new HttpHeaders({ 'content-type': 'application/json' });
+  private secretKey = "MyNameIsHuman";
 
-  tokenUser = 'this is the token';
+  private tokenUser: string = '';
 
-
-  // Creo el token para enviarlo y ser authenticado
-  headers = new HttpHeaders({
-    'Authorization': `Bearer' ${ this.tokenUser }`
-  })
-
+  // headers = new HttpHeaders({
+  //   'Authorization': `Bearer' ${ this.tokenUser }`
+  // })
 
   constructor(
     private readonly http: HttpClient,
   ) { }
+
+  getToken() {
+    const encryptedToken = JSON.parse(localStorage.getItem( 'token' )!);
+    if ( !encryptedToken ) return '';
+    const token = cryptoJs.AES.decrypt( encryptedToken, this.secretKey ).toString(cryptoJs.enc.Utf8);
+    // TODO: revisar que se hace para cuando no hay token
+    console.log({'encryptedTokenfromlocalstorage': encryptedToken})
+    console.log({'Tokenfromlocalstorage': token})
+    try {
+      return token;
+    } catch( error ) {
+      console.error('Invalid in localStorage');
+      localStorage.removeItem( 'token' );
+      return '';
+    }
+  }
 
   getTodosFiltered( url: string ): Observable<ToDo[]> {
     return this.http.get<ToDo[]>(url)
@@ -56,11 +70,15 @@ export class TodosService {
     return this.getTodosFiltered( url );
   }
 
-  // Crea una nueva tarea
+  // Esta API tiene auth
   addTodo( todo: UpdateTodo ): Observable<ToDo> {
+    this.tokenUser = this.getToken();
+    console.log(this.tokenUser)
     const url: string = `${this.apiUrl}/todo/`;
     console.log('addTodo listo')
-    return this.http.post<ToDo>( url, todo, { headers: this.headers } )
+      return this.http.post<ToDo>( url, todo, { headers: { 'Authorization': `Bearer ${ this.tokenUser }`} } ).pipe(
+        catchError( () => of() )
+      )
   }
 
   updateTodo( todoId: string, updateTodo: UpdateTodo ): Observable<ToDo> {
@@ -68,8 +86,13 @@ export class TodosService {
     return this.http.patch<ToDo>( url, updateTodo );
   }
 
+  // Esta API tiene auth
   removeTodo( todoId: string ): Observable<ToDo> {
+    this.tokenUser = this.getToken();
+    console.log(this.tokenUser)
     const url: string = `${this.apiUrl}/todo/${ todoId }`;
-    return this.http.delete<ToDo>(url, { headers: this.headers } );
+    return this.http.delete<ToDo>(url, { headers: { 'Authorization': `Bearer ${ this.tokenUser }`} } ).pipe(
+      catchError( () => of() ),
+    )
   }
 }

@@ -24,10 +24,6 @@ export class LoginComponent {
     password: ''
   }
 
-  public userToken: UserToken = {
-    token: ''
-  }
-
   constructor(
     private readonly fb: FormBuilder,
     private readonly userService: UserService,
@@ -39,13 +35,13 @@ export class LoginComponent {
     })
   }
 
+  // Se envia la informacion
   onSubmit() {
     const { email, password } = this.userLoginForm.value;
     this.userLogin.email = email;
     this.userLogin.password = password;
     this.userService.loginUser( this.userLogin ).subscribe( login => {
       if ( login && login.token ) {
-        this.userToken.token = login.token;
         this.router.navigate(['/todos/alltime'])
       } else {
         console.error('Incorrect email or password')

@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { UserService } from '../../services/user.service';
-import { UserLogin, UserToken } from '../../interfaces';
+import { UserLogged, UserLogin, UserSignup } from '../../interfaces';
 
 @Component({
   selector: 'app-login',
@@ -24,6 +24,12 @@ export class LoginComponent {
     password: ''
   }
 
+  public userInfo: UserSignup = {
+    fullName: '',
+    email: '',
+    password: ''
+  }
+
   constructor(
     private readonly fb: FormBuilder,
     private readonly userService: UserService,
@@ -40,9 +46,10 @@ export class LoginComponent {
     const { email, password } = this.userLoginForm.value;
     this.userLogin.email = email;
     this.userLogin.password = password;
-    this.userService.loginUser( this.userLogin ).subscribe( login => {
-      if ( login && login.token ) {
-        this.router.navigate(['/todos/alltime'])
+    this.userService.loginUser( this.userLogin ).subscribe( userData => {
+      if ( userData && userData.token ) {
+        this.router.navigate(['/todos/alltime']);
+        //this.userInfo = userData;
       } else {
         console.error('Incorrect email or password')
       }

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User, UserLogged, UserLogin, UserSignup } from '../interfaces';
 import { Observable, tap } from 'rxjs';
+import { UserInformationService } from './userInformation.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class UserService {
   private secretKey = "MyNameIsHuman";
 
   constructor(
-    private readonly http: HttpClient
+    private readonly http: HttpClient,
+    private readonly userData: UserInformationService,
   ) { }
 
   storeToken(token: string) {
@@ -29,7 +31,11 @@ export class UserService {
   createNewUser( userSignUp: UserSignup ): Observable<User> {
     const url = `${ this.apiUrl }/auth/signup`;
     return this.http.post<User>( url, userSignUp ).pipe(
-      tap(userData => this.storeToken( userData.token ))
+      tap(userData => this.storeToken( userData.token )),
+      tap(userData => {
+        this.userData.userId = userData.id
+        this.userData.userEmail = userData.email
+      })
     )
   }
 
@@ -38,7 +44,11 @@ export class UserService {
   loginUser( userLogin: UserLogin ): Observable<UserLogged> {
     const url = `${ this.apiUrl }/auth/login`;
     return this.http.post<UserLogged>( url, userLogin).pipe(
-      tap(userData => this.storeToken( userData.token ))
+      tap(userData => this.storeToken( userData.token )),
+      tap(userData => {
+        this.userData.userId = userData.id
+        this.userData.userEmail = userData.email
+      })
     )
   }
 

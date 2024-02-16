@@ -13,4 +13,8 @@ import { RouterModule } from '@angular/router';
 })
 export class NavbarComponent {
 
+  logOut() {
+    localStorage.removeItem( 'token' );
+    // TODO hacer el logout
+  }
 }

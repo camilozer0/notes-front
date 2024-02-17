@@ -4,8 +4,10 @@
     <span><img src="../assets/images/shared/main-notes.svg" alt="My notes image" class="w-16"></span>
     <h1 class="text-4xl title">Let's <span class="text-base font-normal">to</span>Do It</h1>
   </div>
-  <div *ngIf="this.userLoggedIn">
-    <p>Welcome ...</p>
-    <button (click)="logOut()">LogOut</button>
+  <div *ngIf="this.isUserLoggedIn" class="flex flex-row gap-5">
+    <p class="text-softwhite title text-3xl">{{ userInfo.fullName }}</p>
+    <button (click)="logOut()" class="h-10 rounded-full px-1 py-1 hover:scale-110">
+      <img src="../assets/images/user/logout.svg" alt="logout" class="w-7">
+    </button>
   </div>
 </div>

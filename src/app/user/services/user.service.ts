@@ -1,9 +1,9 @@
 import cryptoJs from 'crypto-js';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User, UserLogged, UserLogin, UserSignup } from '../interfaces';
+import { User, UserLogin, UserSignup } from '../interfaces';
 import { Observable, tap } from 'rxjs';
-import { UserInformationService } from './userInformation.service';
+import { UserDataService } from './userData.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class UserService {
 
   constructor(
     private readonly http: HttpClient,
-    private readonly userData: UserInformationService,
+    private readonly userSharedData: UserDataService,
   ) { }
 
   storeToken(token: string) {
@@ -33,21 +33,19 @@ export class UserService {
     return this.http.post<User>( url, userSignUp ).pipe(
       tap(userData => this.storeToken( userData.token )),
       tap(userData => {
-        this.userData.userId = userData.id
-        this.userData.userEmail = userData.email
+        this.userSharedData.userData = userData
       })
     )
   }
 
   // Con este metodo hacemos login
   // TODO verifiar lo que se recibe cuando se hace login
-  loginUser( userLogin: UserLogin ): Observable<UserLogged> {
+  loginUser( userLogin: UserLogin ): Observable<User> {
     const url = `${ this.apiUrl }/auth/login`;
-    return this.http.post<UserLogged>( url, userLogin).pipe(
+    return this.http.post<User>( url, userLogin).pipe(
       tap(userData => this.storeToken( userData.token )),
       tap(userData => {
-        this.userData.userId = userData.id
-        this.userData.userEmail = userData.email
+        this.userSharedData.userData = userData
       })
     )
   }
